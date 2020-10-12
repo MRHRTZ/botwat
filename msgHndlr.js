@@ -86,6 +86,50 @@ module.exports = msgHandler = async (client, message) => {
         //if (!isOwner) return
 
         switch(command) {
+        case 'hitung':
+            try{
+                client.reply(from,`*Kalkulator*\n${body.slice(7)} = ${evaluate(body.slice(7)).toString()}`)
+            }
+            catch(err){
+                client.reply(from,`anda salah masukkan symbol\n* : perkalian\n/ : pembagian+ : pertambahan\n- : pengurangan\n
+Contoh Penggunaan:
+        hitung 1.2*(2 + 4.5)  //7.8
+        hitung 9/3+2i  //3+2i
+        hitung det([-1, 2; 3, 1])  //-7
+        hitung 12.7 cm to inch  //5
+            
+            ${err}`)
+            }
+            break
+
+        case 'pow':
+            var a = JSON.parse(JSON.stringify(body.slice(4).split('#')[0].toString()))
+            var b = JSON.parse(JSON.stringify(body.slice(4).split('#')[1].toString()))
+            try{
+                client.reply(from,`*Perpangkatan*\n${a}\^${b} = ${pow(a,b).toString()}`)
+            }
+            catch(err){
+                client.reply(from,`Salah: ${a}\n anda salah masukkan symbol\n* : perkalian\n/ : pembagian\n+ : pertambahan\n- : pengurangan\n
+Contoh Penggunaan:
+*pow 3#2*\n
+# adalah pembatasan untuk perpangkatan\n\n
+            ${err}`)
+// *pow [[-1, 2],[3, 1]]#2*
+            }
+            break
+        
+        case 'round':
+        try{
+            console.log(body.slice(6))
+            var a = body.slice(6).split(',')[0]
+            var b = body.slice(6).split(',')[1]
+            client.reply(from,`*Pembulatan dari*\n${body.slice(6)} = ${round(a,b).toString()}`)
+            }
+        catch(err){
+            client.reply(from,`Salah\nContoh Penggunaan:\nround 3.4956,2\nround 34.987,0\n,0-15 untuk menampilkan angka dibelakang koma\n\n${err}`)
+        }
+            break
+
         case 'sticker':
         case 'stiker':
             if (isMedia && type === 'image') {
