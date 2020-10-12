@@ -229,7 +229,7 @@ module.exports = msgHandler = async (client, message) => {
         case 'play':
             if (args.length <= 0) return client.reply(from, 'Kirim perintah *play nama lagu*, untuk contoh silahkan kirim perintah *play goyang dumang*')
             var pilih = body.split(' ')[1]
-            let messageIndex = body.indexOf(pilih) + pilih.length;
+            let messageIndex = body.indexOf(pilih) + pilih.length-1;
             let namaLagu = body.slice(messageIndex, body.length);  
             var keyword = namaLagu.replace(/ /g, "+");
             console.log('Nama lagu: '+namaLagu+'\n\nkeyword: '+keyword+'\npilihan (mp3/4): '+pilih)
