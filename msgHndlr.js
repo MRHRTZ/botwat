@@ -289,7 +289,7 @@ module.exports = msgHandler = async (client, message) => {
             break
         case 'cuaca':
             if (args.length === 1) return client.reply(from, 'Kirim perintah *cuaca [tempat]*\nContoh : *cuaca tangerang', id)
-            const tempat = body.slice(7)
+            const tempat = body.slice(6)
             const weather = await get.get('https://mhankbarbar.herokuapp.com/api/cuaca?q='+ tempat).json()
             if (weather.error) {
                 client.reply(from, weather.error, id)
